@@ -28,6 +28,22 @@ A script that generates an insert statement from a json string::
     ('insert into mytable (name) values (?)', ['Arthur'])
 
 
+bench.sh
+--------
+
+A wrapper script that combines timeit with json2insert to measure the runtime
+of a query and insert the result into the `benchmarks` table which can be
+created using the `benchmarks_table.sql` file and crash::
+
+    ./bench.sh "select * from rankings limit 100" mycratecluster.hostname:4200 mycratecluster.hostname:4200
+
+
+Where the first hostname is used to benchmark the query and the
+second hostname is used to store the results.
+
+(this script also requires `jq <http://stedolan.github.io/jq/>`_ to be
+installed)
+
 Installation / Setup
 ====================
 
@@ -36,7 +52,7 @@ It is possible to use the scripts either in a virtualenv or with buildout.
 
 To use buildout do::
 
-    /path/to/dependency/free/python bootstrap.py
+    /path/to/dependency-free/python bootstrap.py
 
 Followed by::
 
